@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 public class FrmEstadistica extends JFrame {
+    private JTextField txtDato;
+    private JList lstMuestra;
 
     public FrmEstadistica() {
         setSize(400, 300);
@@ -77,14 +79,26 @@ public class FrmEstadistica extends JFrame {
 
     }
 
-    private void agregarDato() {
-        JOptionPane.showMessageDialog(null, "Hizo clic en Agregar");
+    private double[] muestra = new double[1000];
+    private int totalDatos = -1;
 
+    private void agregarDato() {
+        double dato= Double.parseDouble(txtDato.getText());
+        totalDatos++;
+        muestra[totalDatos] = dato;
+
+    }
+
+    private void mostrarMuestra(){
+        String[] strMuestra = new String[totalDatos+1];
+        for(int i = 0; i <= totalDatos; i ++){
+            strMuestra[i] = String.valueOf(muestra[i]);
+
+        }
+        lstMuestra.setListData(strMuestra);
     }
 
     private void quitarDato() {
-        JOptionPane.showMessageDialog(null, "Hizo clic en Quitar");
 
     }
-
 }
